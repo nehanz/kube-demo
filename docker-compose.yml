@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+      # No volumes for persistence
+
+  backend:
+    build: ./backend
+    environment:
+      - MONGO_URL=mongodb://mongo:27017
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend

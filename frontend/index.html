@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>K8s Demo</title>
+</head>
+<body>
+  <h1>Messages</h1>
+  <ul id="messages"></ul>
+  <input id="msg" placeholder="Type a message"/>
+  <button onclick="send()">Send</button>
+  <script>
+    async function load() {
+      const res = await fetch('/api/messages');
+      const msgs = await res.json();
+      document.getElementById('messages').innerHTML = msgs.map(m => `<li>${m.text}</li>`).join('');
+    }
+    async function send() {
+      const text = document.getElementById('msg').value;
+      await fetch('/api/messages', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({text})
+      });
+      document.getElementById('msg').value = '';
+      load();
+    }
+    load();
+  </script>
+</body>
+</html>
