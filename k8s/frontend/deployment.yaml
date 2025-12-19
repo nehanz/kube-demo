@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: frontend-app
-        image: frontend-app:v1.0
-        # imagePullPolicy: Never for local image usage
+        image: frontend-app:latest
+        imagePullPolicy: Never  # for local image usage
         ports:
         - containerPort: 80
