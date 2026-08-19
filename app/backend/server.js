@@ -7,6 +7,9 @@ const DB_NAME = 'demo';
 
 app.use(express.json());
 
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
 app.get('/api/messages', async (req, res) => {
   try {
     const client = await MongoClient.connect(MONGO_URL);
