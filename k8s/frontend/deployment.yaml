@@ -17,10 +17,11 @@ spec:
     spec:
       containers:
       - name: frontend-app
-        securityContext:
-          runAsNonRoot: true
-          runAsUser: 1000
-          allowPrivilegeEscalation: false
+        # securityContext:
+        #   runAsNonRoot: true
+        #   runAsUser: 1000
+        #   allowPrivilegeEscalation: false
+        # To properly run NGINX as non-root, want to switch Dockerfile to use the nginxinc/nginx-unprivileged image.
         image: frontend-app:latest
         imagePullPolicy: Never  # for local image usage
         ports:
