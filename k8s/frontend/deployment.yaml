@@ -17,6 +17,10 @@ spec:
     spec:
       containers:
       - name: frontend-app
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+          allowPrivilegeEscalation: false
         image: frontend-app:latest
         imagePullPolicy: Never  # for local image usage
         ports:

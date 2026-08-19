@@ -17,6 +17,10 @@ spec:
     spec:
       containers:
       - name: backend-app
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+          allowPrivilegeEscalation: false
         image: backend-app:latest
         imagePullPolicy: Never  # for local image usage
         ports:
@@ -43,8 +47,8 @@ spec:
         env:
         - name: MONGO_URL
           valueFrom:
-            configMapKeyRef:
-              name: demo-config
+            secretKeyRef:
+              name: mongo-secret
               key: MONGO_URL
         - name: APP_ENV
           valueFrom:

@@ -4,5 +4,4 @@ metadata:
   name: demo-config
   namespace: demo-app
 data:
-  MONGO_URL: mongodb://mongo-service:27017
   APP_ENV: production
