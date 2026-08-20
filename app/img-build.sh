@@ -7,5 +7,5 @@ TAG=${1:-latest}
 
 eval $(minikube docker-env)  # Use minikube's Docker daemon
 
-docker build -t frontend-app:$TAG ./frontend
-docker build -t backend-app:$TAG ./backend
+docker build --network=host -t frontend-app:$TAG ./frontend
+docker build --network=host -t backend-app:$TAG ./backend
